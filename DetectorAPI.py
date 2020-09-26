@@ -1,9 +1,12 @@
 import tensorflow.compat.v1 as tf
+import os
 tf.disable_v2_behavior()
 import time
 import numpy as np
 class DetectorAPI:
     def __init__(self, path_to_ckpt):
+        if not os.path.exists(path_to_ckpt):
+            raise ValueError(f"Can't find a model for DetectorAPI at {path_to_ckpt}. \nCheck if it exists.")
         self.path_to_ckpt = path_to_ckpt
 
         self.detection_graph = tf.Graph()
