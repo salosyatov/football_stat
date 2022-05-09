@@ -34,6 +34,7 @@ class TrainingParams:
     seed: int = field(default=0)
     random_state: int = field(default=255)
     epochs: int = field(default=1)
+    batch_size: int = field(default=32)
 
 
 @dataclass()

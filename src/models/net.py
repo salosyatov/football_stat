@@ -63,8 +63,10 @@ class TripletLoss(nn.Module):
 
 
 class Network(nn.Module):
-    def __init__(self, emb_dim=128):
+    def __init__(self, emb_dim=64, height=80, width=32):
         super(Network, self).__init__()
+        self.height = height
+        self.width = width
         self.conv = nn.Sequential(
             nn.Conv2d(3, 16 * 2, 5, padding=2),  # (H, W)
             nn.PReLU(),
@@ -83,7 +85,7 @@ class Network(nn.Module):
         )
 
         self.fc = nn.Sequential(
-            nn.Linear(64 * 2 * (HW[0] // 8) * (HW[1] // 8), 256),
+            nn.Linear(64 * 2 * (self.height // 8) * (self.width // 8), 256),
             nn.PReLU(),
             nn.Linear(256, emb_dim)
         )

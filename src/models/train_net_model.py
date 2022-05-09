@@ -1,6 +1,5 @@
 import logging
 import sys
-from random import random
 from typing import Tuple
 
 import numpy as np
@@ -12,7 +11,6 @@ from tqdm import tqdm
 
 from .net import Network, TripletLoss, CachedDataset
 from ..params import TrainingParams, TestParams
-
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler(sys.stdout)
@@ -29,7 +27,6 @@ def train_net_model(train_data: Tuple[np.ndarray, np.ndarray, np.ndarray], val_d
     logger.info("Training the net is started.")
     torch.manual_seed(train_params.seed)
     np.random.seed(train_params.seed)
-    random.seed(train_params.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     train_images, train_labels, train_paths = train_data

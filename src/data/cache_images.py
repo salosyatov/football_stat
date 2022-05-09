@@ -40,19 +40,20 @@ def cache_images(preprocessing_params: PreprocessingParams) -> NoReturn:
         raise RuntimeError(f"Folder {images_folder} doesn't exists.")
 
     data = []
-    for folder, _, files in tqdm(os.walk(images_folder)):
+    for folder, _, files in os.walk(images_folder):
         for file_name in files:
             rel_dir = os.path.relpath(folder, images_folder)
             label = tuple(rel_dir.split(os.sep))
             file_path = os.path.join(folder, file_name)
-            data.append((file_path, label))
+            if file_path.split('.')[-1].lower() in ['bmp', 'jpg', 'jpeg', 'png']:
+                data.append((file_path, label))
 
     k = min(len(data), 30)  # There is no need to calculate mean and standard deviation over all samples, it's enough
     # to take 30, for instance.
 
     mean = []
     std = []
-    for path, _ in tqdm(random.choices(data, k=k)):
+    for path, _ in random.choices(data, k=k):
         image_pil = Image.open(path)
         stat = ImageStat.Stat(image_pil)
         mean.append(stat.mean)
@@ -64,7 +65,7 @@ def cache_images(preprocessing_params: PreprocessingParams) -> NoReturn:
     images = []
     labels = []
     paths = []
-    for path, label in tqdm(data):
+    for path, label in data:
         with Image.open(path) as image:
             blank_image = Image.new('RGB', wh, 'black')
             image.thumbnail(wh, Image.BICUBIC)
