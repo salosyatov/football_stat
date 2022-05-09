@@ -30,19 +30,19 @@ class SplittingParams:
 class TrainingParams:
     model_net_type: str = field(default="TripletLoss")
     embedding_size: str = field(default=64)
-    model_clf_type: str = field(default="XGBClassifier")
-    seed: int = field(default=0)
-    random_state: int = field(default=255)
     epochs: int = field(default=1)
     batch_size: int = field(default=32)
+    seed: int = field(default=0)
+    model_clf_type: str = field(default="XGBClassifier")
+    random_state: int = field(default=255)
 
 
 @dataclass()
 class TestParams:
     model_net_type: str = field(default="TripletLoss")
     embedding_size: str = field(default=64)
-    model_clf_type: str = field(default="XGBClassifier")
     seed: int = field(default=0)
+    model_clf_type: str = field(default="XGBClassifier")
     random_state: int = field(default=255)
 
 

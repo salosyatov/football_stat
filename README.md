@@ -1,7 +1,26 @@
 football_stat
 ==============================
 
-A service to recognize mini-football players
+A service to recognize mini-football players. Players' images should be located in `input_data_path` (`data\raw` by default). All images should be divided into teams (the first folder) and players (the second folder). Images can have any names in bmp, jpg, and png formats. Thus, image file names should have the following structure:
+`input_data_path\team_name\player_name\image_name`
+
+Installation: 
+~~~
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+~~~
+Usage:
+~~~
+python src/train_pipeline.py configs/train_config.yaml
+~~~
+
+Test:
+~~~
+pytest tests/
+~~~
+
+
 
 Project Organization
 ------------

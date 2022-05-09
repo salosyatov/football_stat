@@ -1,0 +1,24 @@
+input_data_path: "data/raw"
+output_net_model_path: "models/net.pt"
+output_clf_model_path: "models/clf.pkl"
+metric_path: "models/metrics.json"
+splitting_params:
+  val_size: 0.2
+  random_state: 3
+train_params:
+  model_net_type: "TripletLoss"
+  embedding_size: 64
+  epochs: 10
+  batch_size: 32
+  seed: 0
+  model_clf_type: "RandomForestClassifier"
+  random_state: 0
+test_params:
+  model_net_type: "TripletLoss"
+  embedding_size: 64
+  epochs: 10
+  batch_size: 32
+  seed: 0
+  model_clf_type: "RandomForestClassifier"
+  random_state: 0
+

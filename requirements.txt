@@ -22,3 +22,4 @@ mlflow~=1.25.1
 xgboost~=1.6.1
 boto3~=1.22.9
 pytest
+dvc[s3]
